@@ -30,6 +30,16 @@
 	padding: 10px;
 	border: 1px solid #AAAAAA;
 }
+.result_list {
+	width: 100%;
+  margin-top: 10px;
+	border-collapse: collapse;
+}
+.result_list td,
+.result_list th {
+	padding: 10px;
+	border: 1px solid #AAAAAA;
+}
 </style>
 </head>
 
@@ -118,7 +128,23 @@ function openCart(e){
 			}
 			totalItems += '</tr>';
 		}
-		totalItems += '<table>';
+		//console.log(cartData)
+		const values = Object.values(cartData);
+		//console.log(values);
+		///
+		const totalObject = {count: 0, price: 0};
+		for(let i = 0; i < values.length; i++){
+			const item = values[i];
+			totalObject.price = totalObject.price + (Number(item[1]) * item[2])
+			totalObject.count = totalObject.count + item[2] 
+		}
+		///
+		// const total = values.reduce((acc,item) =>{
+		// 	acc.price = acc.price + (Number(item[1]) * item[2]);
+		// 	acc.count = acc.count + item[2];
+		// 	return acc;
+		// },{count: 0, price: 0})
+		totalItems += `<table class="result_list"><tbody><tr><th>Общее кол-во</th><th>Общая цена</th></tr><tr><th>${totalObject.count}</th><th>${totalObject.price}</th></tr></tbody></table>`;
 		cartCont.innerHTML = totalItems;
 	} else {
 		// если в корзине пусто, то сигнализируем об этом
