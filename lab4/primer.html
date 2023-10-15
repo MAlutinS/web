@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Приветствие по имени из куки</title>
+</head>
+<body>
+    <div id="greeting"></div>
+
+    <script>
+        // Получаем значение куки с именем пользователя
+        var cookies = document.cookie.split(';');
+        var name = '';
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.indexOf('name=') == 0) {
+                name = cookie.substring('name='.length, cookie.length);
+                break;
+            }
+        }
+
+        // Получаем ссылку на элемент, в котором будет отображаться приветствие
+        var greetingElement = document.getElementById('greeting');
+
+        // Создаем строку приветствия
+        var greetingText = 'Привет, ' + name + '! Добро пожаловать на наш сайт!';
+
+        // Устанавливаем содержимое элемента на странице равным строке приветствия
+        greetingElement.innerHTML = greetingText;
+    </script>
+</body>
+</html>
