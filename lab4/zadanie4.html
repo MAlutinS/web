@@ -5,36 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body>
-    <form>
+  <body onload="addPrevious()">
+    <form onsubmit="submited(event)">
       <div class="home"></div>
       <div class="body">
 
         <h1>Вопрос №1</h1>
         <h2>Можно ли остановиться в указанном месте для поссадки пассажира?</h2>
-        <input type="radio" name="radiogroup" value="1"  id="1">
+        <input type="radio" name="radiogroup" value="Можно"  id="1">
         <label for="1">Можно</label>
         <br>
-        <input type="radio" name="radiogroup" value="2"  id="2">
+        <input type="radio" name="radiogroup" value="Нельзя"  id="2">
         <label for="2">Нельзя</label>
         <br>
-        <input type="radio" name="radiogroup" value="3"  id="3">
+        <input type="radio" name="radiogroup" value="Можно, если вы управляете такси"  id="3">
         <label for="3">Можно, если вы управляете такси</label>
 
         <h1>Вопрос №2</h1>
         <h2>На какой цвет можно переходить дорогу?</h2>
-        <input type="radio" name="radiogroup2" value="11"  id="11">
+        <input type="radio" name="radiogroup2" value="Красный"  id="11">
         <label for="11">Красный</label>
         <br>
-        <input type="radio" name="radiogroup2" value="22"  id="22">
+        <input type="radio" name="radiogroup2" value="Зеленый"  id="22">
         <label for="22">Зеленый</label>
         <br>
-        <input type="radio" name="radiogroup2" value="33"  id="33">
+        <input type="radio" name="radiogroup2" value="Желтый"  id="33">
         <label for="33">Желтый</label>
         <br>
-        <button type="submit" id="but" onClick="">Проверить</button>
+        <button type="submit" id="but">Проверить</button>
       </div>
     </form>
+    <script>
+      function submited(event){
+        event.preventDefault();
+        const correctAnswers = ['Можно','Зеленый'];
+        const formData = new FormData(event.target);
+        const object = Object.fromEntries(formData.entries());
+        const values = Object.values(object);
+        let countCorrect = 0;
+        console.log(values);
+        for(let i = 0; i < correctAnswers.length; i++){
+          if(correctAnswers.includes(values[i])){
+            countCorrect += 1;
+          }
+        }
+        // const countCorrect = values.reduce((acc,value) =>{
+        //   if(correctAnswers.includes(value)){
+        //     acc += 1;
+        //   }
+        //   return acc;
+        // },0)
+        localStorage.setItem('countCorrect', countCorrect);
+      }
+      function addPrevious(){
+        localStorage.setItem('prevCount', localStorage.getItem('countCorrect'));
+      }
+    </script>
     <div id="place"></div>
   </body>
 </html>
