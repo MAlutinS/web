@@ -17,30 +17,28 @@
     function submited(event) {
       event.preventDefault();
       const correctAnswers = ["Можно", "Зеленый"];
-      const formData = new FormData(event.target);
-      const object = Object.fromEntries(formData.entries());
-      const values = Object.values(object);
       let countCorrect = 0;
-      console.log(values);
-      for (let i = 0; i < correctAnswers.length; i++) {
-        if (correctAnswers.includes(values[i])) {
+      const inputs = document.querySelectorAll('input[class="class-radio"]:checked');
+      console.log(inputs);
+      if(inputs.length !== correctAnswers.length){
+        alert('Ответьте на все вопросы, пожалуйста');
+        return;
+      }
+      for(let i = 0; i < inputs.length; i++){
+        console.log(inputs[i].value);
+        if(correctAnswers.includes(inputs[i].value)){
+          console.log('hello')
           countCorrect += 1;
         }
       }
-      // const countCorrect = values.reduce((acc,value) =>{
-      //   if(correctAnswers.includes(value)){
-      //     acc += 1;
-      //   }
-      //   return acc;
-      // },0)
       localStorage.setItem("countCorrect", countCorrect);
       const countnow = localStorage.getItem("countCorrect");
       const precount = localStorage.getItem("prevCount"); 
       document.getElementById('place').innerHTML="<HR/>" +"Кол-во правильных ответов: "+ countnow +"<BR>"+"Кол-во правильных ответов в прошлый раз: "+ precount +"<HR/>";
-      var element = document.getElementById("bt");
+      const element = document.getElementById("bt");
       element.style.display = "block";
-      var elemen = document.getElementById("body");
-      elemen.style.display = "none";
+      const elementBody = document.getElementById("body");
+      elementBody.style.display = "none";
     }
     function addPrevious() {
       localStorage.setItem("prevCount", localStorage.getItem("countCorrect"));
@@ -55,14 +53,15 @@
       <div class="body" id="body">
         <h1>Вопрос №1</h1>
         <h2>Можно ли остановиться в указанном месте для поссадки пассажира?</h2>
-        <input type="radio" name="radiogroup" value="Можно" id="1" />
+        <input type="radio" class='class-radio' name="radiogroup" value="Можно" id="1" />
         <label for="1">Можно</label>
         <br />
-        <input type="radio" name="radiogroup" value="Нельзя" id="2" />
+        <input type="radio" class='class-radio' name="radiogroup" value="Нельзя" id="2" />
         <label for="2">Нельзя</label>
         <br />
         <input
           type="radio"
+          class='class-radio'
           name="radiogroup"
           value="Можно, если вы управляете такси"
           id="3"
@@ -71,13 +70,13 @@
 
         <h1>Вопрос №2</h1>
         <h2>На какой цвет можно переходить дорогу?</h2>
-        <input type="radio" name="radiogroup2" value="Красный" id="11" />
+        <input type="radio" class='class-radio' name="radiogroup2" value="Красный" id="11" />
         <label for="11">Красный</label>
         <br />
-        <input type="radio" name="radiogroup2" value="Зеленый" id="22" />
+        <input type="radio" class='class-radio' name="radiogroup2" value="Зеленый" id="22" />
         <label for="22">Зеленый</label>
         <br />
-        <input type="radio" name="radiogroup2" value="Желтый" id="33" />
+        <input type="radio" class='class-radio' name="radiogroup2" value="Желтый" id="33" />
         <label for="33">Желтый</label>
         <br />
         <button type="submit" id="but">Проверить</button>
