@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Главная страница</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>page1</title>
+    <style>
+       .top{
+            background: #e3e8cc; 
+            border: solid 1px black; 
+            padding: 10px 0 10px 10px; 
+            margin-bottom: 5px;
+            font-size: 24px;
+            font-weight: bold;
+
+        }
+        .menu{
+            width: 200px; 
+            background: #e3e8cc; 
+            border: solid 1px black; 
+            padding: 3px; 
+            float: left;
+        }
+        .content{
+            background: #e3e8cc; 
+            border: solid 1px black; 
+            margin-bottom: 5px;
+            margin-left: 210px;
+            padding-left: 5px;
+        }
+        .bottom{
+            background: #e3e8cc; 
+            border: solid 1px black; 
+            padding: 3px; 
+            clear: both;
+        }
+    </style>
+    <script>
+        function back(){
+            let price = localStorage.getItem("Price");
+            
+            if(price){
+                document.getElementById("price").textContent = "В корзине есть заказы на сумму " + price;
+            }
+            // if(price){
+
+            // }
+        }
+    </script>
+</head>
+<body onload="back()">
+    <div class="top">Заголовок сайта</div>
+    <div class="menu">
+        <a href="index.html">Главная</a><br>
+        <a href="text1.html">Страница 1</a><br>
+        <a href="text2.html">Страница 2</a><br>
+        <a href="wewe.html">Страница регистрации</a><br>
+        <a href="zadanie6.html">Страница калькулятора</a><br>
+        <a href="zadanie3.html">Корзина</a><br>
+    </div>
+        <div class="content">
+            <h1>Главная страница сайта</h1>
+            <div id="price"></div>
+        </div>
+        <div class="bottom">
+            Подвал
+        </div>
+
+</body>
+</html>

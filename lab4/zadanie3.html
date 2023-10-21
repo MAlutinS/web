@@ -40,10 +40,48 @@
 	padding: 10px;
 	border: 1px solid #AAAAAA;
 }
+       .top{
+            background: #e3e8cc; 
+            border: solid 1px black; 
+            padding: 10px 0 10px 10px; 
+            margin-bottom: 5px;
+            font-size: 24px;
+            font-weight: bold;
+
+        }
+        .menu{
+            width: 200px; 
+            background: #e3e8cc; 
+            border: solid 1px black; 
+            padding: 3px; 
+            float: left;
+        }
+        .content{
+            background: #e3e8cc; 
+            border: solid 1px black; 
+            margin-bottom: 5px;
+            margin-left: 210px;
+            padding-left: 5px;
+        }
+        .bottom{
+            background: #e3e8cc; 
+            border: solid 1px black; 
+            padding: 3px; 
+            clear: both;
+        }
 </style>
 </head>
 
 <body>
+	<div class="top">Корзина</div>
+	<div class="menu">
+        <a href="index.html">Главная</a><br>
+        <a href="text1.html">Страница 1</a><br>
+        <a href="text2.html">Страница 2</a><br>
+        <a href="wewe.html">Страница регистрации</a><br>
+        <a href="zadanie6.html">Страница калькулятора</a><br>
+    </div>
+	<div class="content">
 <div id="wrapper">
     <div class="item_box">
         <h3 class="item_title">Samsung Galaxy</h3>
@@ -62,6 +100,10 @@
     </div>
     <p><button id="checkout">Оформить заказ</button> &nbsp; <button id="clear_cart">Очистить корзину</button></p>
     <div id="cart_content"></div>
+</div>
+</div>
+<div class="bottom">
+	Подвал
 </div>
 <script type="text/javascript">
 var d = document,
@@ -138,13 +180,8 @@ function openCart(e){
 			totalObject.price = totalObject.price + (Number(item[1]) * item[2])
 			totalObject.count = totalObject.count + item[2] 
 		}
-		///
-		// const total = values.reduce((acc,item) =>{
-		// 	acc.price = acc.price + (Number(item[1]) * item[2]);
-		// 	acc.count = acc.count + item[2];
-		// 	return acc;
-		// },{count: 0, price: 0})
 		totalItems += `<table class="result_list"><tbody><tr><th>Общее кол-во</th><th>Общая цена</th></tr><tr><th>${totalObject.count}</th><th>${totalObject.price}</th></tr></tbody></table>`;
+		localStorage.setItem("Price", totalObject.price);
 		cartCont.innerHTML = totalItems;
 	} else {
 		// если в корзине пусто, то сигнализируем об этом

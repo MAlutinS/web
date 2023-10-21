@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="steale.css"/>
+    <title>Опрос</title><style>
+        .top{
+             background: #e3e8cc; 
+             border: solid 1px black; 
+             padding: 10px 0 10px 10px; 
+             margin-bottom: 5px;
+             font-size: 24px;
+             font-weight: bold;
+ 
+         }
+         .menu{
+             width: 200px; 
+             background: #e3e8cc; 
+             border: solid 1px black; 
+             padding: 3px; 
+             float: left;
+         }
+         .content{
+             border: solid 1px black; 
+             margin-bottom: 5px;
+             margin-left: 210px;
+             padding-left: 5px;
+         }
+         .bottom{
+             background: #e3e8cc; 
+             border: solid 1px black; 
+             padding: 3px; 
+             clear: both;
+         }
+     </style>
+</head>
+<body>
+    <div class="top">Заголовок сайта</div>
+    <div class="menu">
+        <a href="index.html">Главная</a><br>
+        <a href="text1.html">Страница 1</a><br>
+        <a href="text2.html">Страница 2</a><br>
+        <a href="wewe.html">Страница регистрации</a><br>
+        <a href="zadanie6.html">Страница калькулятора</a><br>
+        <a href="zadanie3.html">Корзина</a><br>
+    </div>
+    <div class="content">
+        <H1>Регистрация для акции во Вкусно И Точка.</H1>
+        <form action="#">
+        <p>Имя:
+            <div class="firstname">
+                <input type="text" id="firstname" name="firstname" placeholder="Имя" autofocus required  maxlength="20" />
+            </p>
+            </div>
+          
+        </p>
+        <p>Фамилия:
+            <div class="lastname">
+                <input type="text" id="lastname" name="lastname" placeholder="Фамилия"  required  maxlength="20" />
+            </div>
+            </p>
+            <P>Ваш пол: <INPUT type="radio" name="gender" value="Male"> Мужской
+                &nbsp; <INPUT type="radio" name="gender" value="Female"> Женский</P>
+                
+            <p>Ваш возраст:
+                <div class="ages">
+                <SELECT name="age">
+                <OPTION value="">Выберите одну из опций:</OPTION>
+                <OPTION value="0-18 years">0-18 лет</OPTION>
+                <OPTION value="18-30 years">18-30 лет</OPTION>
+                <OPTION value="30-45 years">30-45 лет</OPTION>
+                <OPTION value="45-60 years">45-60 лет</OPTION>
+                <OPTION value="60+ years">60+ лет</OPTION>
+                </SELECT>
+                </div>
+            </p> 
+            <p>Как часто вы заходите в нашу сеть ресторанов быстрого питания:
+                <div class="tick">
+                <SELECT name="tick">
+                <OPTION value="">Выберите одну из опций:</OPTION>
+                <OPTION value="1-2 times a week">1-2 раза в неделю</OPTION>
+                <OPTION value="3-5 times a week">3-5 раз в неделю</OPTION>
+                <OPTION value="every day">каждый день</OPTION>
+                </SELECT>
+                </div>
+            </p> 
+           
+            <p>Ваш номер телефона: 
+                <div class="phone">
+                    <input type="tel"  required>
+
+                </div>
+            </p>
+            <p>Ваша почта для уведомлений:
+                <div class="mail">
+                    <input type="email" id="email" name="email" placeholder=your@email.address required maxlength="50" />
+                </div>
+              </p>
+              <div>
+                
+                <p>
+                    <label>
+                      <input type="checkbox" name="newsletter" />
+                      Подпишитесь на рассылку
+                    </label>
+                  </p>
+                  <p>
+                    <label>
+                      <input type="checkbox" name="newsletter" />
+                      Одпишитесь от рассылки
+                    </label>
+                  </p>
+                  <button type="submit" id="button">Отправить</button>
+             </div>
+            </form>
+    </div>
+    <div class="bottom">
+        Подвал
+        <input type="number" name="num"/>
+    </div>
+
+</body>
+</html>

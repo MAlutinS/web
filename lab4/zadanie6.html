@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Калькулятор расчета зарплаты преподавателя</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<style>
+        input{
+        height: 25px;
+        padding: 7px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        border-radius: 7px;
+        align-items: center;
+        justify-content: center;   
+        }
+        input:invalid{
+        background-color: rgb(250, 157, 157);
+        }
+        select, option {
+        display: block;
+        margin: left;
+        padding:5px;
+        border-radius: 7px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        button {
+        margin: 0;
+        padding: 5px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        width: auto;
+        background-color: rgb(238, 231, 231);
+        border-radius: 5px;
+        margin-left: 4px;
+        margin-bottom: 4px;
+        }
+        button:hover {
+        background-color: rgb(153, 240, 153);
+        transition: 1.5s;
+        }   
+        .top{
+             background: #e3e8cc; 
+             border: solid 1px black; 
+             padding: 10px 0 10px 10px; 
+             margin-bottom: 5px;
+             font-size: 24px;
+             font-weight: bold;
+         }
+         .menu{
+             width: 200px; 
+             background: #e3e8cc; 
+             border: solid 1px black; 
+             padding: 3px; 
+             float: left;
+         }
+         .content{
+             background: #e3e8cc; 
+             border: solid 1px black; 
+             margin-bottom: 5px;
+             margin-left: 210px;
+             padding-left: 5px;
+         }
+         .bottom{
+             background: #e3e8cc; 
+             border: solid 1px black; 
+             padding: 3px; 
+             clear: both;
+         }
+</style>
+<script>
+    
+
+    function Additional() {
+        let additionalFields = document.getElementById("additional-fields");
+        let additionalBtn = document.getElementById("additional-btn");
+        
+        if (additionalFields.style.display == "none") {
+            additionalFields.style.display = "block";
+            additionalBtn.innerHTML = "Удалить дополнительно";
+        } else {
+            additionalFields.style.display = "none";
+            additionalBtn.innerHTML = "Дополнительно";
+        }
+    }
+    
+    function calculateSalary() {
+        let  hours = Number(document.getElementById("hours").value);
+        const position = document.getElementById("position").value;
+        let consultations = Number(document.getElementById("consultations").value);
+        let diplomas = Number(document.getElementById("diplomas").value);
+        if(!Number.isInteger(hours) || !Number.isInteger(consultations) || !Number.isInteger(diplomas)){
+            
+            let salarySpan = document.getElementById("salary");
+        
+        salarySpan.innerHTML = 0;
+         
+   }else {
+   
+       let salary = 0;
+        
+        if (position == "professor") {
+            salary = hours * 500 + consultations * 0.3 * 500 + diplomas * 0.5 * 500;
+        } else if (position == "docent") {
+            salary = hours * 380 + consultations * 0.3 * 380 + diplomas * 0.5 * 380;
+        } else if (position == "assistant") {
+            salary = hours * 200 + consultations * 0.3 * 200 + diplomas * 0.5 * 200;
+        }
+        let res = document.getElementById("result");
+        let salarySpan = document.getElementById("salary");
+        
+        salarySpan.innerHTML = salary;
+        res.style.display = "block";
+        }
+        localStorage.setItem("hours", hours);
+        localStorage.setItem("position", position);
+        localStorage.setItem("consultations", consultations);
+        localStorage.setItem("diplomas", diplomas);
+    }
+    function back(){
+        let hours = localStorage.getItem("hours");
+        let position = localStorage.getItem("position");
+        let consultations = localStorage.getItem("consultations");
+        let diplomas = localStorage.getItem("diplomas");
+        document.getElementById("hours").value = hours;
+        document.getElementById("position").value = position;
+        document.getElementById("consultations").value = consultations;
+        document.getElementById("diplomas").value = diplomas;
+    }
+</script>
+<body onload="back()">
+    <div class="top">Заголовок сайта</div>
+        <div class="menu">
+            <a href="index.html">Главная</a><br>
+            <a href="text1.html">Страница 1</a><br>
+            <a href="text2.html">Страница 2</a><br>
+            <a href="wewe.html">Страница регистрации</a><br>
+            <a href="lab3-12.html">Страница калькулятора</a><br>
+            <a href="zadanie3.html">Корзина</a><br>
+        </div>
+        <div class="content">
+	<h1>Калькулятор расчета зарплаты преподавателя</h1>
+	<form>
+		<label for="hours">Количество проведенных часов:</label>
+		<input type="number" min="0" step="1" id="hours" name="hours" pattern="^[0-9]+$" required><br><br>
+		
+		<label for="position">Должность:</label>
+		<select id="position" name="position" required>
+			<option value="professor">Профессор</option>
+			<option value="docent">Доцент</option>
+			<option value="assistant">Ассистент</option>
+		</select><br><br>
+		
+		<button type="button" id="additional-btn" onclick="Additional()">Дополнительно</button><br><br>
+		
+		<div id="additional-fields" style="display:none">
+			<label for="consultations">Количество консультаций:</label>
+			<input type="number" min="0" step="1" id="consultations" name="consultations" pattern="^[0-9]+$"><br><br>
+			
+			<label for="diplomas">Количество дипломников:</label>
+			<input type="number" min="0" step="1" id="diplomas" name="diplomas" pattern="^[0-9]+$"><br><br>
+		</div>
+		
+		<input type="button" onclick="calculateSalary()" value="Рассчитать"><br><br>
+		
+		<div id="result" style="display:block">
+			<p>Сумма к выплате составит: <span id="salary"></span> руб.</p>
+		</div>
+	</form>
+</div>
+<div class="bottom">
+    Подвал
+</div>
+	
+</body>
+</html>
